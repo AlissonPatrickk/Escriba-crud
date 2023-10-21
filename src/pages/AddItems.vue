@@ -2,12 +2,18 @@
     <q-page class="q-pa-md row items-start justify-center">
         <div class="col-xs-12 col-sm-10 row col-md-8 col-lg-6 col-xl-6 q-gutter-md justify-center">
             <h4>Carrinho</h4>
-            <q-table class="col-12" :rows="items" row-key="id" :columns="columns" selection="multiple"
-                v-model:selected="selected" />
-            <div class="col-12" style="display: flex; justify-content: space-between;">
-                <div><span style="font-size: 20px ">Total:</span> {{ totalPrice.toFixed(2) }}</div>
-                <q-btn color="primary" label="Comprar Itens Selecionados" @click="addSelected"
-                    :disabled="!selected.length > 0" />
+            <div class="col-12" v-if="items.length === 0" style="text-align: center;">
+                <h5>O carrinho está vazio. Adicione itens para continuar.</h5>
+            </div>
+            <div class="row col-12" v-else>
+                <q-table class="col-12" :rows="items" row-key="id" :columns="columns" selection="multiple"
+                    v-model:selected="selected" />
+                <div class="col-12" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <div><span style="font-size: 20px ">Total:</span> {{ totalPrice.toFixed(2) }}</div>
+                    <q-btn color="primary" label="Remover Itens" @click="clearItens" :disabled="!selected.length > 0" />
+                    <q-btn color="primary" label="Comprar Itens Selecionados" @click="addSelected"
+                        :disabled="!selected.length > 0" />
+                </div>
             </div>
         </div>
     </q-page>
@@ -68,9 +74,7 @@ export default {
         addSelected() {
             const selectedItems = this.selected;
             const currentDate = new Date();
-
             const formattedDate = currentDate.toISOString().slice(0, 10);
-
             const pedidos = {
                 cliente: {
                     id: this.user.id,
@@ -93,12 +97,10 @@ export default {
                 })
             };
             this.error = null;
-
             axios.post('http://localhost:3000/pedidos', pedidos)
                 .then((response) => {
                     if (response.status === 201) {
                         this.$router.push('/MyItems');
-                        this.clearInputs();
                     } else {
                         this.error = 'Erro no cadastro';
                     }
@@ -106,8 +108,21 @@ export default {
                 .catch((error) => {
                     console.error('Erro na chamada da API:', error);
                     this.error = 'Erro ao conectar com o servidor';
+                }).finally(() => {
+                    this.clearItens()
                 });
         },
+        clearItens() {
+            this.selected.forEach(item => {
+                item.addedToCart = false;
+                item.quantity = null;
+                item.quantityTotal = 0;
+            });
+            this.$store.dispatch('setAddItem', this.items.filter(item => item.addedToCart));
+            this.selected = [];
+            this.items = this.$store.state.addItems
+            this.user = this.$store.state.user
+        }
     },
 };
 </script>

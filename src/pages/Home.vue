@@ -27,7 +27,6 @@
     </div>
   </q-page>
 </template>
-
 <script>
 import axios from 'axios';
 
@@ -48,7 +47,6 @@ export default {
     },
     signIn() {
       this.error = null;
-
       axios.get('http://localhost:3000/pessoas')
         .then((response) => {
           const customerWithDocument = response.data.find(user => user.cpf === this.document);

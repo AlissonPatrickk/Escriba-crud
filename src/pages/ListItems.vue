@@ -41,7 +41,7 @@ export default {
         axios.get('http://localhost:3000/produtos').then((response) => {
             this.items = response.data.map(item => ({
                 ...item,
-                quantity: 0,
+                quantity: null,
                 quantityTotal: 0,
                 addedToCart: false,
             }));

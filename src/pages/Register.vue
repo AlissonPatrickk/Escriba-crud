@@ -24,10 +24,8 @@
     </div>
   </q-page>
 </template>
-
 <script>
 import axios from 'axios';
-
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Register',
@@ -50,7 +48,6 @@ export default {
         senha: this.password
       };
       this.error = null;
-
       axios.post('http://localhost:3000/pessoas', formData)
         .then((response) => {
           if (response.status === 201) {

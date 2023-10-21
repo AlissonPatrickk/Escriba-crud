@@ -10,7 +10,6 @@
         </div>
     </q-page>
 </template>
-  
 <script>
 import axios from "axios";
 export default {
@@ -62,7 +61,6 @@ export default {
                         produto.cliente.nome === this.user.nome
                     );
                 });
-
                 const items = [];
                 for (const product of products) {
                     for (const item of product.itens) {
@@ -74,7 +72,6 @@ export default {
                         });
                     }
                 }
-
                 this.items = items;
             }
         });

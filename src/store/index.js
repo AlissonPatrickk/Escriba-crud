@@ -16,7 +16,7 @@ export default createStore({
       return state.user !== null;
     },
     isAddItem(state) {
-      return state.addItems !== null;
+      return state.addItems;
     }
   },
   mutations: {
@@ -25,6 +25,9 @@ export default createStore({
     },
     setAddItem(state, payload) {
       state.addItems = payload;
+    },
+    clearSelectedItems(state) {
+      state.addItems = state.addItems.filter(item => !item.selected);
     },
   },
   actions: {
