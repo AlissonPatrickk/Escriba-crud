@@ -29,7 +29,6 @@
 import axios from 'axios';
 import { replaceDecimalSeparator } from '../utils/index'
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name: 'ListItems',
     data() {
         return {

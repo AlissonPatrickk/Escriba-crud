@@ -27,7 +27,6 @@
 <script>
 import axios from 'axios';
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Register',
   data() {
     return {
@@ -44,7 +43,6 @@ export default {
       this.error = null;
       const users = await axios.get('http://localhost:3000/pessoas');
       const cpfExists = users.data.some(user => user.cpf === this.document);
-      console.log('coeee', cpfExists)
       if (cpfExists) {
         this.error = 'Este CPF já foi cadastrado.';
       } else {

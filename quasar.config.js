@@ -2,10 +2,6 @@ const { configure } = require('quasar/wrappers');
 
 module.exports = configure(function (/* ctx */) {
   return {
-    eslint: {
-      warnings: true,
-      errors: true
-    },
     boot: [
       'axios'
     ],

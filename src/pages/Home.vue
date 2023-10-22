@@ -30,7 +30,6 @@
 import axios from 'axios';
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
   data() {
     return {
@@ -50,7 +49,6 @@ export default {
         .then((response) => {
           const customerWithDocument = response.data.find(user => user.cpf === this.document);
           if (customerWithDocument) {
-            console.log('coee', customerWithDocument)
             if (customerWithDocument.senha === this.password) {
               this.$store.dispatch('setAuthenticatedUser', customerWithDocument);
               this.$router.push('/Items');
