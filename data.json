@@ -1,0 +1,115 @@
+{
+  "pessoas": [
+    {
+      "nome": "Alisson",
+      "cpf": "111.111.111-11",
+      "dataNascimento": "1997-11-26",
+      "senha": "123",
+      "id": 1
+    }
+  ],
+  "produtos": [
+    {
+      "id": 1,
+      "descricao": "produto 1",
+      "valoUnitario": 10,
+      "image": "https://m.media-amazon.com/images/I/51A2YQw5VjL.__AC_SX300_SY300_QL70_ML2_.jpg"
+    },
+    {
+      "id": 2,
+      "descricao": "produto 2",
+      "valoUnitario": 8.88,
+      "image": "https://m.media-amazon.com/images/I/516tRc0cOzL.__AC_SX300_SY300_QL70_ML2_.jpg"
+    },
+    {
+      "descricao": "produto 3",
+      "valoUnitario": 10,
+      "id": 3,
+      "image": "https://m.media-amazon.com/images/I/81MQoL+vjjL._AC_SY300_SX300_.jpg"
+    },
+    {
+      "descricao": "produto 4",
+      "valoUnitario": 12,
+      "id": 4,
+      "image": "https://m.media-amazon.com/images/I/711R0ARDW6L.__AC_SX300_SY300_QL70_ML2_.jpg"
+    },
+    {
+      "descricao": "produto 5",
+      "valoUnitario": 9.1,
+      "id": 5,
+      "image": "https://atacadodsp.com.br/wp-content/uploads/2021/08/papelaria_materialparaescritorio_blocorecado_tilembretecolorido_distribuidorasaopedro-300x300.jpg"
+    },
+    {
+      "descricao": "produto 6",
+      "valoUnitario": 15.3,
+      "id": 6,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZgvyQaO4XiaznO9iLHuXYeaN3qyAwnOPYWvYPDYMWeUgd_EV9WRGCO-7YMPCD__6QJ5Q&usqp=CAU"
+    }
+  ],
+  "pedidos": [
+    {
+      "cliente": {
+        "id": 1,
+        "nome": "Alisson",
+        "cpf": "111.111.111-11"
+      },
+      "dataEmissao": "2023-10-22",
+      "valorTotal": "126.64",
+      "itens": [
+        {
+          "id": 1,
+          "produto": {
+            "id": 1,
+            "descricao": "produto 1"
+          },
+          "valor": 10,
+          "quantidade": "10",
+          "subtotal": "100.00"
+        },
+        {
+          "id": 2,
+          "produto": {
+            "id": 2,
+            "descricao": "produto 2"
+          },
+          "valor": 8.88,
+          "quantidade": "3",
+          "subtotal": "26.64"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "cliente": {
+        "id": 1,
+        "nome": "Alisson",
+        "cpf": "111.111.111-11"
+      },
+      "dataEmissao": "2023-10-22",
+      "valorTotal": "110.00",
+      "itens": [
+        {
+          "id": 4,
+          "produto": {
+            "id": 4,
+            "descricao": "produto 4"
+          },
+          "valor": 12,
+          "quantidade": "5",
+          "subtotal": "60.00"
+        },
+        {
+          "id": 3,
+          "produto": {
+            "id": 3,
+            "descricao": "produto 3"
+          },
+          "valor": 10,
+          "quantidade": "5",
+          "subtotal": "50.00"
+        }
+      ],
+      "id": 3
+    }
+  ]
+}
