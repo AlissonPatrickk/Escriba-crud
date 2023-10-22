@@ -33,6 +33,10 @@ Clique em "Start E2E Testing in 'SEU NAVEGADOR'".
 
 Os testes estão localizados na seção "Specs".
 
+### Vue Router
+Este projeto utiliza o Vue Router para a navegação de rotas. O Vue Router é uma biblioteca que permite criar rotas e navegar entre diferentes páginas em um aplicativo Vue.js de forma simples e eficaz.
+Configuração e definição de rotas podem ser encontradas nos arquivos relacionados ao Vue Router neste projeto.
+
 ## Teste Cypress
 O teste "Loginfish" e "Register Finish" realizam o fluxo completo de login e registro.
 Observe que este projeto foca principalmente no desenvolvimento da interface do usuário, e questões de segurança não foram priorizadas. Para autenticar um usuário, a aplicação faz uma verificação simples no JSON para validar o CPF, tanto para criar um novo usuário quanto para fazer login.
@@ -41,7 +45,6 @@ Observe que este projeto foca principalmente no desenvolvimento da interface do 
 Neste projeto, utilizo o Vuex para gerenciamento de estado e props para comunicação entre componentes. Isso nos permitiu manter um fluxo de dados eficiente e organizado na aplicação.
 
 ## Design Responsivo e Dinâmico
-
 Este projeto é totalmente responsivo, Isso foi alcançado com a ajuda das bibliotecas do Quasar, que oferecem suporte para o desenvolvimento de aplicativos web responsivos.
 
 ## Dados de Exemplo
