@@ -1,80 +1,63 @@
 <template>
     <q-page class="q-pa-md">
         <div class="col-6 row q-gutter-md justify-center">
-            <h4>Meus produtos</h4>
-            <q-table class="col-12" flat bordered grid title="Produto" :rows="items" :columns="columns" row-key="name"
-                hide-header />
-            <div class="col-12" v-if="items.length === 0">
+            <h4 class="col-12" style="text-align: center;">Pedidos</h4>
+            <h5 class="col-12" v-if="items.length === 0" style="text-align: center;">
                 Nenhum item encontrado.
-            </div>
+            </h5>
+            <q-card class="col-xs-12 col-sm-10 col-md-4 col-lg-3 col-xl-3" v-else v-for="(value, index) in items"
+                :key="index">
+                <q-card-section>
+                    <ItemCard :item="value.itens" :total="value.valorTotal" @click="deleteItem(value.id)" />
+                </q-card-section>
+            </q-card>
         </div>
     </q-page>
 </template>
+  
 <script>
 import axios from "axios";
+import ItemCard from "components/ItemCard.vue";
+
 export default {
     name: "MyItems",
+    components: {
+        ItemCard,
+    },
     data() {
         return {
             user: {},
             items: [],
-            columns: [
-                {
-                    name: "descricao",
-                    required: true,
-                    label: "Nome do Produto",
-                    align: "left",
-                    field: "descricao",
-                },
-                {
-                    name: "valoUnitario",
-                    required: true,
-                    label: "Preço",
-                    align: "right",
-                    field: "valoUnitario",
-                    format: (val) => `R$ ${val}`,
-                },
-                {
-                    name: "quantity",
-                    required: true,
-                    label: "Quantidade",
-                    align: "right",
-                    field: "quantity",
-                },
-                {
-                    name: "subtotal",
-                    required: true,
-                    label: "Preço total",
-                    align: "right",
-                    field: "subtotal",
-                },
-            ],
         };
     },
     created() {
         this.user = this.$store.state.user;
-        axios.get("http://localhost:3000/pedidos").then((response) => {
-            if (Array.isArray(response.data)) {
-                const products = response.data.filter((produto) => {
-                    return (
-                        produto.cliente.cpf === this.user.cpf ||
-                        produto.cliente.nome === this.user.nome
-                    );
-                });
-                const items = [];
-                for (const product of products) {
-                    for (const item of product.itens) {
-                        items.push({
-                            descricao: item.produto.descricao,
-                            valoUnitario: item.valor,
-                            quantity: item.quantidade,
-                            subtotal: item.subtotal,
-                        });
-                    }
+        this.fetchItems();
+    },
+    methods: {
+        fetchItems() {
+            axios.get("http://localhost:3000/pedidos").then((response) => {
+                if (Array.isArray(response.data)) {
+                    this.items = response.data.filter((pedido) => {
+                        return (
+                            pedido.cliente &&
+                            (pedido.cliente.cpf === this.user.cpf ||
+                                pedido.cliente.nome === this.user.nome)
+                        );
+                    });
                 }
-                this.items = items;
-            }
-        });
+            });
+        },
+        deleteItem(itemId) {
+            axios
+                .delete(`http://localhost:3000/pedidos/${itemId}`)
+                .then(() => {
+                    this.fetchItems();
+                })
+                .catch((error) => {
+                    console.error("Erro ao excluir o item:", error);
+                });
+        },
     },
 };
 </script>

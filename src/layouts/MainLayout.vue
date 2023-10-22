@@ -2,7 +2,7 @@
   <q-layout>
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn flat round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           Escriba
         </q-toolbar-title>

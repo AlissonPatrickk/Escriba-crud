@@ -8,15 +8,15 @@
                         <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
                             <div class="absolute-bottom">
                                 <div class="text-h6">{{ item.descricao }}</div>
-                                <div class="text-subtitle2">Preço R${{ item.valoUnitario }}</div>
+                                <div class="text-subtitle2">Preço R${{ formatPrice(item.valoUnitario) }}</div>
                             </div>
                         </q-img>
                         <q-card-actions class="flex justify-between">
-                            <q-btn flat @click="addBuy(item)" :disable="item.addedToCart">
-                                {{ item.addedToCart ? 'Adicionado' : 'Adicionar ao carrinho' }}
-                            </q-btn>
                             <q-input label="Quantidade" filled type="text" v-model="item.quantity"
                                 @input="updateQuantity(item)" :disable="item.addedToCart" />
+                            <q-btn outline @click="addBuy(item)" :disable="item.addedToCart">
+                                {{ item.addedToCart ? 'Adicionado' : 'Adicionar ao carrinho' }}
+                            </q-btn>
                         </q-card-actions>
                     </q-card>
                 </div>
@@ -27,7 +27,7 @@
   
 <script>
 import axios from 'axios';
-
+import { replaceDecimalSeparator } from '../utils/index'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'ListItems',
@@ -67,6 +67,9 @@ export default {
             } else {
                 item.quantity = 0;
             }
+        },
+        formatPrice(number) {
+            return replaceDecimalSeparator(number);
         },
     },
 };

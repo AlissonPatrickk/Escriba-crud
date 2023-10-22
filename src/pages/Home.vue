@@ -7,9 +7,8 @@
     </div>
     <div class="col-xs-10 col-sm-10 col-md-5 col-lg-5 col-xl-5 q-pa-m card-sign">
       <div class="q-gutter-y-md column col-12">
-        <q-input outlined label="Documento" stack-label :dense="dense" v-model="document" filled type="document" />
-        <q-input outlined label="Senha" stack-label :dense="dense" v-model="password" filled
-          :type="isPwd ? 'password' : 'text'">
+        <q-input outlined label="Documento" v-model="document" filled mask="###.###.###-##" />
+        <q-input outlined label="Senha" v-model="password" filled :type="isPwd ? 'password' : 'text'">
           <template v-slot:append>
             <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
           </template>
@@ -18,7 +17,7 @@
           <q-btn flat color="primary" @click="navigateTsignInoRegister">
             Não possui conta?
           </q-btn>
-          <q-btn color="primary" @click="signIn" :disabled="document == ''">
+          <q-btn color="primary" @click="signIn" :disabled="!canSignIn()">
             Entrar
           </q-btn>
         </div>
@@ -35,8 +34,8 @@ export default {
   name: 'Home',
   data() {
     return {
-      document: '',
-      password: '',
+      document: null,
+      password: null,
       isPwd: true,
       error: null,
     }
@@ -51,6 +50,7 @@ export default {
         .then((response) => {
           const customerWithDocument = response.data.find(user => user.cpf === this.document);
           if (customerWithDocument) {
+            console.log('coee', customerWithDocument)
             if (customerWithDocument.senha === this.password) {
               this.$store.dispatch('setAuthenticatedUser', customerWithDocument);
               this.$router.push('/Items');
@@ -65,6 +65,9 @@ export default {
           console.error('Erro na chamada da API:', error);
           this.error = 'Erro ao conectar com o servidor';
         });
+    },
+    canSignIn() {
+      return this.password && this.document && this.document.length === 14;
     },
   }
 }
