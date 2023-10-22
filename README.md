@@ -16,6 +16,9 @@ json-server --watch data.json
 Executando o Projeto
 Para executar o projeto, utilize o seguinte comando:
 
+npm install
+Instale as dependências
+
 quasar dev
 Isso iniciará o servidor de desenvolvimento.
 
