@@ -3,18 +3,18 @@
         <div class="col-12" style="text-align: center;">
             <h4>Produtos</h4>
             <div class="row row q-col-gutter-lg">
-                <div v-for="item in items" :key="item.id" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                <div v-for="item in items" :key="item.id" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
                     <q-card>
-                        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+                        <q-img  style="height: 25vh; max-height: 30vh;" :src="item.image">
                             <div class="absolute-bottom">
                                 <div class="text-h6">{{ item.descricao }}</div>
                                 <div class="text-subtitle2">Preço R${{ formatPrice(item.valoUnitario) }}</div>
                             </div>
                         </q-img>
-                        <q-card-actions class="flex justify-between">
-                            <q-input label="Quantidade" filled type="text" v-model="item.quantity"
+                        <q-card-actions class="row justify-between q-gutter-md">
+                            <q-input class="col-5" label="Quantidade" filled type="text" v-model="item.quantity"
                                 @input="updateQuantity(item)" :disable="item.addedToCart" />
-                            <q-btn outline @click="addBuy(item)" :disable="item.addedToCart">
+                            <q-btn class="col-5" outline @click="addBuy(item)" :disable="item.addedToCart">
                                 {{ item.addedToCart ? 'Adicionado' : 'Adicionar ao carrinho' }}
                             </q-btn>
                         </q-card-actions>
