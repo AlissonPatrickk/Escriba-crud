@@ -1,11 +1,12 @@
 <template>
-  <q-page class="row justify-around items-start">
-    <div class="col-xs-10 col-sm-10 col-md-5 col-lg-5 col-xl-5 row">
-      <img src="../assets/escriba.png" alt="Escriba" style="width: 100%;" />
-      <div class="title-text">Deseja comprar nossos itens?</div>
-      <div class="title-text">Faça o login e confira os melhores produtos e preços do Brasil!</div>
+  <div class="row justify-around items-start">
+    <div class="col-xs-10 col-sm-10 col-md-5 col-lg-5 col-xl-5">
+      <img src="../assets/escriba.png" alt="Escriba" style="width: 100%;margin: 10% 0;" />
+        <div class="title-text">Deseja comprar nossos itens?</div>
+        <div class="title-text">Faça o login e confira os melhores produtos e preços do Brasil!</div>  
     </div>
     <div class="col-xs-10 col-sm-10 col-md-5 col-lg-5 col-xl-5 q-pa-m card-sign">
+      <div class="title-text">Acessar sua conta</div>
       <div class="q-gutter-y-md column col-12">
         <q-input outlined label="Documento" v-model="document" filled mask="###.###.###-##" />
         <q-input outlined label="Senha" v-model="password" filled :type="isPwd ? 'password' : 'text'">
@@ -24,7 +25,7 @@
         <div v-if="error" class="q-mt-md text-h6 text-negative">{{ error }}</div>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 <script>
 import axios from 'axios';

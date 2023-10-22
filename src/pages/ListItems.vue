@@ -2,8 +2,8 @@
     <q-page class="q-pa-md row items-start q-gutter-md justify-center">
         <div class="col-12" style="text-align: center;">
             <h4>Produtos</h4>
-            <div class="row row q-col-gutter-lg">
-                <div v-for="item in items" :key="item.id" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+            <div class="row justify-center q-col-gutter-lg">
+                <div v-for="item in items" :key="item.id" class="col-xs-12 col-sm-8 col-md-4 col-lg-3 col-xl-2">
                     <q-card>
                         <q-img  style="height: 25vh; max-height: 30vh;" :src="item.image">
                             <div class="absolute-bottom">

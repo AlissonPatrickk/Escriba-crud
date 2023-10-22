@@ -3,7 +3,7 @@ describe('End-to-End Test Register', () => {
       cy.visit('http://localhost:9000/#/');
       cy.contains('Não possui conta?').click();
       cy.get('input[aria-label="Nome completo"]').should('be.visible').type('Alisson Patrick');
-      cy.get('input[aria-label="Documento"]').type('124.114.789-99');
+      cy.get('input[aria-label="Documento"]').type('124.114.779-09');
       cy.get('input[aria-label="Senha"]').type('password123');
       cy.get('input[aria-label="Data de nascimento"]').type('1990-01-01');
       cy.get('button.q-btn.bg-primary').should('be.visible').click();
